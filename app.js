@@ -50,6 +50,19 @@ app.get('/books/edit/:id', (req, res) => {
   res.send(createEditFormTemplate(book));
 });
 
+app.put('/books/:id', (req, res) => {
+  const { title, author } = req.body;
+  const { id } = req.params;
+
+  const newBook = { title, author, id };
+
+  const idx = BOOKS_DATA.findIndex(b => b.id === id);
+  BOOKS_DATA[idx] = newBook
+
+  res.send(createBookTemplate(newBook));
+})
+
+
 // listen to port
 app.listen(3000, () => {
   console.log('App listening on port 3000');
