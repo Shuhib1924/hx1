@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/books', (req, res) => {
-  res.send(createListTemplate());
+  res.send(createListTemplate(BOOKS_DATA));
 });
 
 app.post('/books', (req, res) => {
@@ -61,6 +61,13 @@ app.put('/books/:id', (req, res) => {
 
   res.send(createBookTemplate(newBook));
 })
+
+app.post('/books/search', (req, res) => {
+  const text = req.body.search.toLowerCase();
+  console.log(text);
+
+  res.send(createListTemplate(BOOKS_DATA.filter(b => b.title.toLowerCase().includes(text))));
+});
 
 
 // listen to port
