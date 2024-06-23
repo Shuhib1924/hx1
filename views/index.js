@@ -13,7 +13,12 @@ const createHomepageTemplate = () => /*html*/`
       <main>
         <div class="book-list">
           <!-- book list here later -->
-          <button hx-get="/books">Show Books</button>
+          <button hx-get="/books" hx-target=".book-list">Show Books</button>
+          <button hx-get="/books" hx-swap="beforeend" hx-target=".book-list">before end</button>
+          <button hx-get="/books" hx-swap="afterend" hx-target=".book-list">after end</button>
+          <button hx-get="/books" hx-swap="afterend" hx-target=".book-list"> Books</button>
+          <button hx-get="/books" hx-swap="outerHTML">outer</button>
+          <button hx-get="/books" hx-swap="innerHTML">inner</button>
         </div>
         <div class="add-book-form">
           <h2>What do you want to read?</h2>
